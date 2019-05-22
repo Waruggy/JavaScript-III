@@ -1,7 +1,7 @@
 /* The for principles of "this";
 * in your own words. explain the four principle for the "this" keyword below.
 *
-* 1. Window Binding is the case to catch pretty much everyting.
+* 1. Window Binding is the case to catch pretty much everything.
 * 2. Implicit Binding is the case to tell what this is referencing.
 * 3. New Binding is a new object that the interpretor created.
 * 4. Explicit Binding is a used as a standalone function.
@@ -12,69 +12,54 @@
 // Principle 1
 
 // code example for Window Binding
-var sayPlayer = function(){
-    console.log(this.lastPlayer);
-};
 
-var turtle581 = {
-    number: "turtle581",
-    lastPlayer: "Jim",
-    age: 38,
-    station: "#4",
-    startTime: "5:30pm",
-    endTime: "6:23pm"
+function myTitle(title) {
+    console.log(this);
+    return title;
 }
-sayPlayer();
-window.lastPlayer = "Jim Darkmatter";
-sayPlayer();
+
+myTitle("Jenkins");
 
 // Principle 2
 
 // code example for Implicit Binding
 
-var turtle422 = {
-    number: "turtle422",
-    lastPlayer: "Bin",
-    age: 34,
-    station: "#2",
-    sayStation: function(){
-    console.log(this.station)
-},
-    startTime: "1:30pm",
-    endTime: "2:29pm"
+let guestOne = {
+    name: "Binwin Stonearms",
+    table: "2",
+    whichTable: function() {
+        console.log(this.name + ' is at table ' + this.table + ' from ' + this.startTime  + ' to ' + this.endTime + '!')
+    },
+    startTime: "2:30pm",
+    endTime: "3:30pm"
 }
-turtle422.sayStation();
+guestOne.whichTable();
 
 // Principle 3
 
 // code example for New Binding
-var newTurtle = function(number, lastPlayer, age, station){
-    this.number = number;
-    this.lastPlayer = lastPlayer;
-    this.age = age;
-    this.station = station;
+let newGuest = function(name, table, startTime, endTime){
+    this.name = name;
+    this.table = table;
+    this.startTime = startTime;
+    this.endTime = endTime;
 };
 
-var turtle691 = new newTurtle("turtle691", "Jack", "19", "#1")
-console.log(turtle691);
+let guestTwo = new newGuest("Jake Strasburg", "3", "12:00pm", "1:00pm");
+console.log(guestTwo);
 
 // Principle 4
 
 // code example for Explicit Binding
-var turtle123 = {
-    number:"turtle123",
-    lastPlayer:"Toshiro Shimazaki",
-    age: 22,
-    station: "#8",
-    sayStation: function(){
-        console.log(this.station)
-    },
-    startTime:"10:15am",
-    endTime:"11:40am"
+let guestThree = {
+    name:"Tim Lee",
+    table: "1",  
+    startTime:"10:00am",
+    endTime:"11:00am"
 }
 
-var sayLastPlay = function(){
-    console.log(this.lastPlayer + " was assigned " + this.number + " and played at station " + this.station + " from " + this.startTime + " to " + this.endTime + ".");
+let sayLastGuest = function() {
+    console.log(this.name + " was assigned to table " + this.table + " and autographed from " + this.startTime + " to " + this.endTime + ".");
 }
 
-sayLastPlay.call(turtle123);
+sayLastGuest.call(guestThree);
